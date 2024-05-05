@@ -1,0 +1,90 @@
+{% extends 'bill/basic.html' %}
+{% block title %} Bill {% endblock %}
+
+{% block body %}
+            <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1em;
+            text-align: center;
+        }
+
+        section {
+            margin: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        @media (max-width: 600px) {
+            table {
+                border: 1px solid #ddd;
+            }
+
+            th, td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="flex-container mt-3">
+        <div class="container">
+            <h2>Customer Information</h2>
+            <p> Name: {{a.0.name}}<br>Mobile Number: {{a.0.mobile_num}} <br>Email: {{a.0.email}}<br>Type of Consumption: {{a.0.ty}} <br>User's Address: {{a.0.address}}<br>PAN: {{a.0.pan}}<br>GST: {{a.0.gst}}</p>
+
+        </div>
+
+        <div class="container">
+            <h2>Bill Details</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bill Number</th>
+                        <th>Date</th>
+                        <th>Reading</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                        <th>Paid </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for bill_number in q %}
+                    <tr>
+                        <td>{{bill_number.bill_number}}</td>
+                        <td>{{bill_number.r_date}}</td>
+                        <td>{{bill_number.reading}}</td>
+                        <td>{{bill_number.price}}</td>
+                        <td>{{bill_number.total}}</td>
+                        <td>{{bill_number.paid}}</td>
+
+                    </tr>
+                    {% endfor %}
+
+                    <!-- Add more rows for additional items -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
